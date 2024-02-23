@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Spring Blog</h1>
+
+    <div class="blogpost">
+        <h3 th:text="${blogPost.getTitle()}">Title</h3>
+        <h5 th:text="'Written by ' + ${blogPost.author.getFirstName()} + ' ' + ${blogPost.author.getLastName()}">Author</h5>
+        <h5 th:text="'Last Updated at ' + ${blogPost.getPublicationDate()}">Last Updated At</h5>
+        <p th:text="${blogPost.getContent()}">body text</p>
+    </div>
+
+    <ul sec:authorize="isAuthenticated()">
+        <li><a th:href="@{'/posts/' + ${blogPost.id} + '/edit'}">Edit</a></li>
+        <li><a th:href="@{'/posts/' + ${blogPost.id} + '/delete'}">Delete</a></li>
+    </ul>
+</body>
+</html>

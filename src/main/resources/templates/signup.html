@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Spring Blog! - Signup</title>
+</head>
+<body>
+<h1>Spring Blog Signup Page</h1>
+
+<div class="container">
+    <a th:href="@{/}">Home</a>
+    <h2>Register New Account</h2>
+    <form action="#"
+          th:action="@{/signup}"
+          th:object="${user}"
+          method="POST">
+        <div>
+            <label for="firstname">First Name</label>
+            <input id="firstname" type="text" th:field="*{author.firstName}" placeholder="First Name"/>
+        </div>
+        <div>
+            <label for="lastname">Last Name</label>
+            <input id="lastname" type="text" th:field="*{author.lastName}" placeholder="Last Name"/>
+        </div>
+        <div>
+            <label for="username">Username</label>
+            <input id="username" type="text" th:field="*{username}" placeholder="Username"/>
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input id="password" type="password" th:field="*{password}" placeholder="Password"/>
+        </div>
+        <button type="submit">Register!</button>
+    </form>
+</div>
+
+</body>
+</html>

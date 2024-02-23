@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Spring Blog! - Home</title>
+</head>
+<body>
+    <h1>Spring Blog</h1>
+
+    <div class="blogposts-container">
+        <div class="blogpost" th:each="blogPost : ${blogPosts}">
+            <h3>
+                <a th:href="@{'/posts/' + ${blogPost.getId()}}" th:text="${blogPost.getTitle()}">Title</a>
+            </h3>
+            <h5 th:text="'Written by ' + ${blogPost.author.getFirstName()} + ' ' + ${blogPost.author.getLastName()}">Author</h5>
+            <h5 th:text="'Last Updated at ' + ${blogPost.getPublicationDate()}">Last Updated At</h5>
+            <p th:text="${blogPost.getContent()}">body text</p>
+        </div>
+    </div>
+
+    <ul sec:authorize="!isAuthenticated()">
+        <li><a th:href="@{/signup}">Signup</a></li>
+        <li><a th:href="@{/login}">Login</a></li>
+    </ul>
+    <div sec:authorize="isAuthenticated()">
+        <form th:action="@{/logout}"
+              method="POST">
+            <div>
+                <label>Hi, <span sec:authentication="name">Username</span></label>
+            </div>
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+
+</body>
+</html>
